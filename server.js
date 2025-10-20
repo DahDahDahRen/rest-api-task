@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require("path");
 const dotenv = require("dotenv");
 const cors = require("cors");
 const morgan = require("morgan");
@@ -22,6 +23,9 @@ app.use(cookieParser());
 app.use(morgan("dev"));
 
 // Router
+app.get("/", (req, res) => {
+  res.sendFile(path.join(__dirname, "/public/index.html"));
+});
 app.use("/api/task/v1", taskRouter);
 app.use("/api/user/v1", userRouter);
 
